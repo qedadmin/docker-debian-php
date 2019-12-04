@@ -63,7 +63,7 @@ RUN     \
         php5.6-mbstring php5.6-mcrypt php5.6-mysql \
         php5.6-odbc php5.6-opcache \
         php5.6-pgsql php5.6-phpdbg php5.6-pspell \
-        php5.6-readline php5.6-recode \
+        php5.6-readline \
         php5.6-snmp php5.6-soap php5.6-sqlite3 php5.6-sybase \
         php5.6-tidy \
         php5.6-xml php5.6-xmlrpc php5.6-xsl \
@@ -80,13 +80,14 @@ RUN     \
         php7.4-mbstring php7.4-mysql \
         php7.4-odbc php7.4-opcache \
         php7.4-pgsql php7.4-phpdbg php7.4-pspell \
-        php7.4-readline php7.4-recode \
+        php7.4-readline \
         php7.4-snmp php7.4-soap php7.4-sqlite3 php7.4-sybase \
         php7.4-tidy \
         php7.4-xml php7.4-xmlrpc php7.4-xsl \
         php7.4-zip \
         php-geoip \
         php-imagick \
+        php-recode \
         php-redis \
         php-xdebug \
         php-pear \
