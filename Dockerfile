@@ -68,23 +68,23 @@ RUN     \
         php5.6-tidy \
         php5.6-xml php5.6-xmlrpc php5.6-xsl \
         php5.6-zip \
-        php7.2 \
-        php7.2-bcmath php7.2-bz2 php7.2-cli php7.2-common php7.2-curl \
-        php7.2-dba php7.2-dev \
-        php7.2-enchant \
-        php7.2-fpm \
-        php7.2-gd php7.2-gmp \
-        php7.2-imap php7.2-interbase php7.2-intl \
-        php7.2-json \
-        php7.2-ldap \
-        php7.2-mbstring php7.2-mysql \
-        php7.2-odbc php7.2-opcache \
-        php7.2-pgsql php7.2-phpdbg php7.2-pspell \
-        php7.2-readline php7.2-recode \
-        php7.2-snmp php7.2-soap php7.2-sqlite3 php7.2-sybase \
-        php7.2-tidy \
-        php7.2-xml php7.2-xmlrpc php7.2-xsl \
-        php7.2-zip \
+        php7.4 \
+        php7.4-bcmath php7.4-bz2 php7.4-cli php7.4-common php7.4-curl \
+        php7.4-dba php7.4-dev \
+        php7.4-enchant \
+        php7.4-fpm \
+        php7.4-gd php7.4-gmp \
+        php7.4-imap php7.4-interbase php7.4-intl \
+        php7.4-json \
+        php7.4-ldap \
+        php7.4-mbstring php7.4-mysql \
+        php7.4-odbc php7.4-opcache \
+        php7.4-pgsql php7.4-phpdbg php7.4-pspell \
+        php7.4-readline php7.4-recode \
+        php7.4-snmp php7.4-soap php7.4-sqlite3 php7.4-sybase \
+        php7.4-tidy \
+        php7.4-xml php7.4-xmlrpc php7.4-xsl \
+        php7.4-zip \
         php-geoip \
         php-imagick \
         php-redis \
@@ -105,22 +105,22 @@ RUN     \
         && pear uninstall -r DB \
         && pear config-set http_proxy "" \
         && echo "extension=oci8.so" > /etc/php/5.6/mods-available/oci8.ini \
-        && update-alternatives --set php /usr/bin/php7.2 \
-        && update-alternatives --set php-config /usr/bin/php-config7.2 \
-        && update-alternatives --set phpdbg /usr/bin/phpdbg7.2 \
-        && update-alternatives --set phpize /usr/bin/phpize7.2 \
-        && update-alternatives --set phar /usr/bin/phar7.2 \
+        && update-alternatives --set php /usr/bin/php7.4 \
+        && update-alternatives --set php-config /usr/bin/php-config7.4 \
+        && update-alternatives --set phpdbg /usr/bin/phpdbg7.4 \
+        && update-alternatives --set phpize /usr/bin/phpize7.4 \
+        && update-alternatives --set phar /usr/bin/phar7.4 \
         && \
         if [ ! -z "$HTTP_PROXY" ]; then \
             pear config-set http_proxy ${HTTP_PROXY}; \
         fi \
         && pecl channel-update pecl.php.net \
-        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=7.2 install oci8 \
+        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=7.4 install oci8 \
         && pecl uninstall -r oci8 \
-        && pear -d php_suffix=7.2 install DB \
+        && pear -d php_suffix=7.4 install DB \
         && pear uninstall -r DB \
         && pear config-set http_proxy "" \
-        && echo "extension=oci8.so" > /etc/php/7.2/mods-available/oci8.ini \
+        && echo "extension=oci8.so" > /etc/php/7.4/mods-available/oci8.ini \
         && phpenmod -s ALL oci8 \
         && echo "**** Clean up packages ****" \
         && apt-get autoremove -y \
