@@ -91,6 +91,7 @@ RUN     \
         php-redis \
         php-xdebug \
         php-pear \
+        redis-server \
         && update-alternatives --set php /usr/bin/php5.6 \
         && update-alternatives --set php-config /usr/bin/php-config5.6 \
         && update-alternatives --set phpdbg /usr/bin/phpdbg5.6 \
@@ -127,6 +128,10 @@ RUN     \
         && apt-get autoremove -y \
         && apt-get autoclean \
         && apt-get clean \
+        && ln -s /usr/bin/php7.4 /usr/bin/php7.0 \
+        && ln -s /usr/bin/php7.4 /usr/bin/php7.1 \
+        && ln -s /usr/bin/php7.4 /usr/bin/php7.2 \
+        && ln -s /usr/bin/php7.4 /usr/bin/php7.3 \
         && rm -rf \
        	/tmp/* \
        	/var/lib/apt/lists/* \
