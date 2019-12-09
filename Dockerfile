@@ -127,6 +127,7 @@ RUN     \
         && pear config-set http_proxy "" \
         && echo "extension=oci8.so" > /etc/php/7.4/mods-available/oci8.ini \
         && phpenmod -s ALL oci8 \
+        && dpkg -i /tmp/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb \
         && echo "**** Clean up packages ****" \
         && apt-get autoremove -y \
         && apt-get autoclean \
