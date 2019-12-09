@@ -17,6 +17,7 @@ ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/i
 ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/instantclient-sdk-linux.x64-${INSTANTCLIENT_VERSION}.zip /tmp/
 ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/instantclient-sqlplus-linux.x64-${INSTANTCLIENT_VERSION}.zip /tmp/
 ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/sqlnet.ora /tmp/
+ADD     http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb /tmp/
 
 ## Install packages
 RUN     \
@@ -92,6 +93,8 @@ RUN     \
         php-xdebug \
         php-pear \
         redis-server \
+        multiarch-support \
+        libncurses5 \
         && update-alternatives --set php /usr/bin/php5.6 \
         && update-alternatives --set php-config /usr/bin/php-config5.6 \
         && update-alternatives --set phpdbg /usr/bin/phpdbg5.6 \
