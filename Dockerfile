@@ -88,7 +88,6 @@ RUN     \
         php7.4-zip \
         php-geoip \
         php-imagick \
-        php-recode \
         php-redis \
         php-xdebug \
         php-pear \
