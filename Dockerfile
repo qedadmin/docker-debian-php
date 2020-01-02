@@ -132,6 +132,8 @@ RUN     \
         && apt-get autoremove -y \
         && apt-get autoclean \
         && apt-get clean \
+        && ln -s /usr/bin/php5.6 /usr/bin/php5 \
+        && ln -s /usr/bin/php7.4 /usr/bin/php7 \
         && ln -s /usr/bin/php7.4 /usr/bin/php7.0 \
         && ln -s /usr/bin/php7.4 /usr/bin/php7.1 \
         && ln -s /usr/bin/php7.4 /usr/bin/php7.2 \
