@@ -52,7 +52,7 @@ RUN     \
         && echo "Package: nodejs" >> /etc/apt/preferences.d/nodejs.pref \
         && echo "Pin: version 6.*" >> /etc/apt/preferences.d/nodejs.pref \
         && echo "Pin-Priority: 999" >> /etc/apt/preferences.d/nodejs.pref \
-        && curl -sLk https://deb.nodesource.com/setup_6.x | bash - \
+        && curl -sLk https://deb.nodesource.com/setup_6.x | bash - ; \
         && echo "**** Install packages ****" \
         && apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get --no-install-recommends install -y \
