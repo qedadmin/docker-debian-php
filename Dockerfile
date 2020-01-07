@@ -32,21 +32,27 @@ RUN     \
         && ldconfig \
         && \
         if [ ! -z "$HTTP_PROXY" ]; then \
+            echo "proxy=$HTTP_PROXY" >> ~/.curlrc ; \
+            echo "noproxy=127.0.0.1,localhost" >> ~/.curlrc ; \
+            echo "insecure" >> ~/.curlrc ; \
+        fi \
+        && \
+        if [ ! -z "$HTTP_PROXY" ]; then \
             echo "Acquire::http::Proxy \"$HTTP_PROXY\";" >> /etc/apt/apt.conf.d/proxy.conf ; \
         fi \
         && \
         if [ ! -z "$HTTPS_PROXY" ]; then \
             echo "Acquire::https::Proxy \"$HTTPS_PROXY\";" >> /etc/apt/apt.conf.d/proxy.conf ; \
+            echo "Acquire::https::Verify-Peer \"false\";" >> /etc/apt/apt.conf.d/proxy.conf ; \
         fi \
         && echo "**** Adding Sury repos ****" \
         && echo "deb [trusted=yes] https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/sury.org.list \
-        && \
-        if [ ! -z "$HTTPS_PROXY" ]; then \
-            curl -x $HTTPS_PROXY -sSk https://packages.sury.org/php/apt.gpg | apt-key add - ; \
-        else \
-            curl -sSk https://packages.sury.org/php/apt.gpg | apt-key add - ; \
-        fi \
-        \
+        && curl -sSk https://packages.sury.org/php/apt.gpg | apt-key add - ; \
+        && echo "**** Adding nodesource repos ****" \
+        && echo "Package: nodejs" >> /etc/apt/preferences.d/nodejs.pref \
+        && echo "Pin: version 6.*" >> /etc/apt/preferences.d/nodejs.pref \
+        && echo "Pin-Priority: 999" >> /etc/apt/preferences.d/nodejs.pref \
+        && curl -sLk https://deb.nodesource.com/setup_6.x | bash - \
         && echo "**** Install packages ****" \
         && apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get --no-install-recommends install -y \
@@ -91,9 +97,9 @@ RUN     \
         php-redis \
         php-xdebug \
         php-pear \
-        redis-server \
         multiarch-support \
         libncurses5 \
+        nodejs \
         && update-alternatives --set php /usr/bin/php5.6 \
         && update-alternatives --set php-config /usr/bin/php-config5.6 \
         && update-alternatives --set phpdbg /usr/bin/phpdbg5.6 \
