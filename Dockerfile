@@ -47,7 +47,7 @@ RUN     \
         fi \
         && echo "**** Adding Sury repos ****" \
         && echo "deb [trusted=yes] https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/sury.org.list \
-        && curl -sSk https://packages.sury.org/php/apt.gpg | apt-key add - ; \
+        && curl -sSk https://packages.sury.org/php/apt.gpg | apt-key add - \
         && echo "**** Adding nodesource repos ****" \
         && echo "Package: nodejs" >> /etc/apt/preferences.d/nodejs.pref \
         && echo "Pin: version 6.*" >> /etc/apt/preferences.d/nodejs.pref \
