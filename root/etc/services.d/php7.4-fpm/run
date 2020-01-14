@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-exec /usr/sbin/php-fpm7.4 --allow-to-run-as-root -c /etc/php/7.4/fpm --nodaemonize
-EOT

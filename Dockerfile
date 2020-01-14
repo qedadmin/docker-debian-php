@@ -182,6 +182,12 @@ RUN     \
        	/tmp/* \
        	/var/lib/apt/lists/* \
        	/var/tmp/* \
+       	&& rm -f /etc/php/5.6/fpm/pool.d/*.conf \
+       	/etc/php/7.0/fpm/pool.d/*.conf \
+       	/etc/php/7.1/fpm/pool.d/*.conf \
+       	/etc/php/7.2/fpm/pool.d/*.conf \
+       	/etc/php/7.3/fpm/pool.d/*.conf \
+       	/etc/php/7.4/fpm/pool.d/*.conf \
         && mkdir -p /run/php \
         && chown www-data:www-data /run/php
 
