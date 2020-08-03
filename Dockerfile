@@ -1,3 +1,6 @@
+ARG     MYSQL_TAG=5.7
+FROM    mysql:${MYSQL_TAG} AS builder
+
 FROM    qedadmin/base-debian:latest
 ARG     HTTP_PROXY
 ARG     HTTPS_PROXY
@@ -18,6 +21,7 @@ ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/i
 ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/instantclient-sqlplus-linux.x64-${INSTANTCLIENT_VERSION}.zip /tmp/
 ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/sqlnet.ora /tmp/
 ADD     http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb /tmp/
+ADD     https://www.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.9/binary/debian/buster/x86_64/percona-xtrabackup-80_8.0.9-1.buster_amd64.deb /tmp/percona-xtrabackup.deb
 
 ## Install packages
 RUN     \
@@ -169,6 +173,7 @@ RUN     \
         \
         && phpenmod -s ALL oci8 \
         && dpkg -i /tmp/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb \
+        && dpkg -i /tmp/percona-xtrabackup.deb \
         && echo "**** Clean up packages ****" \
         && apt-get autoremove -y \
         && apt-get autoclean \
@@ -191,6 +196,7 @@ RUN     \
         && mkdir -p /run/php \
         && chown www-data:www-data /run/php
 
+COPY    --from=builder /usr/bin/mysql /usr/bin/
 
 ## root filesystem
 COPY    root /
