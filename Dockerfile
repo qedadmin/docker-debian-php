@@ -122,6 +122,9 @@ RUN     \
         libncurses5 \
         nodejs \
         redis-server \
+        libdbd-mysql-perl \
+        libcurl4-openssl-dev \
+        libev4 \
         && update-alternatives --set php /usr/bin/php5.6 \
         && update-alternatives --set php-config /usr/bin/php-config5.6 \
         && update-alternatives --set phpdbg /usr/bin/phpdbg5.6 \
