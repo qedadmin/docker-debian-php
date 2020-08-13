@@ -221,6 +221,7 @@ RUN     \
        	/etc/php/7.4/fpm/pool.d/*.conf \
         && mkdir -p /run/php \
         && mkdir -p /etc/haproxy \
+        && mkdir -p /var/run/mysqld \
         && chown www-data:www-data /run/php
 
 ## MySQL
