@@ -79,6 +79,11 @@ RUN     \
         && apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get --no-install-recommends install -y \
         libaio1 \
+        libc6-dev \
+        liblua5.3-dev \
+        libpcre2-dev \
+        libssl-dev \
+        zlib1g-dev \
         php5.6 \
         php5.6-bcmath php5.6-bz2 \
         php5.6-cli php5.6-common php5.6-curl \
