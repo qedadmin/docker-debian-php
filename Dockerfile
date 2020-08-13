@@ -1,10 +1,24 @@
 ARG     HAPROXY_TAG=2.2
-FROM    haproxy:${HAPROXY_TAG} AS build_haproxy
-
 ARG     MYSQL_TAG=5.7
-FROM    mysql:${MYSQL_TAG} AS build_mysql
-
 ARG     BASE_TAG=latest
+
+FROM    haproxy:${HAPROXY_TAG} AS build_haproxy
+ARG     MYSQL_TAG
+ARG     BASE_TAG
+ARG     HTTP_PROXY
+ARG     HTTPS_PROXY
+ARG     BUILD_DATE
+ARG     VCS_REF
+ARG     BUILD_VERSION
+
+FROM    mysql:${MYSQL_TAG} AS build_mysql
+ARG     BASE_TAG
+ARG     HTTP_PROXY
+ARG     HTTPS_PROXY
+ARG     BUILD_DATE
+ARG     VCS_REF
+ARG     BUILD_VERSION
+
 FROM    qedadmin/base-debian:${BASE_TAG}
 ARG     HTTP_PROXY
 ARG     HTTPS_PROXY
