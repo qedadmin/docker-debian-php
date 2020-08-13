@@ -1,7 +1,11 @@
-ARG     MYSQL_TAG=5.7
-FROM    mysql:${MYSQL_TAG} AS builder
+ARG     HAPROXY_TAG=2.2
+FROM    haproxy:${HAPROXY_TAG} AS build_haproxy
 
-FROM    qedadmin/base-debian:latest
+ARG     MYSQL_TAG=5.7
+FROM    mysql:${MYSQL_TAG} AS build_mysql
+
+ARG     BASE_TAG=latest
+FROM    qedadmin/base-debian:${BASE_TAG}
 ARG     HTTP_PROXY
 ARG     HTTPS_PROXY
 
@@ -197,9 +201,15 @@ RUN     \
        	/etc/php/7.3/fpm/pool.d/*.conf \
        	/etc/php/7.4/fpm/pool.d/*.conf \
         && mkdir -p /run/php \
+        && mkdir -p /etc/haproxy \
         && chown www-data:www-data /run/php
 
-COPY    --from=builder /usr/bin/mysql /usr/bin/
+## MySQL
+COPY    --from=build_mysql /usr/bin/mysql /usr/bin/
+
+## HAProxy
+COPY    --from=build_haproxy /usr/local/sbin/haproxy /usr/sbin/
+COPY    --from=build_haproxy /usr/local/etc/haproxy/errors /etc/haproxy/errors
 
 ## root filesystem
 COPY    root /
