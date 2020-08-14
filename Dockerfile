@@ -222,6 +222,7 @@ RUN     \
         && mkdir -p /run/php \
         && mkdir -p /etc/haproxy \
         && mkdir -p /var/run/mysqld \
+        && mkdir -p /var/run/redis \
         && chown www-data:www-data /run/php
 
 ## MySQL
