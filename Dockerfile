@@ -143,7 +143,6 @@ RUN     \
         php8.0-fpm \
         php8.0-gd php8.0-gmp \
         php8.0-imap php8.0-interbase php8.0-intl \
-        php8.0-json \
         php8.0-ldap \
         php8.0-mbstring php8.0-mysql \
         php8.0-odbc php8.0-opcache \
@@ -158,6 +157,7 @@ RUN     \
         php-redis \
         php-xdebug \
         php-pear \
+        php-json \
         multiarch-support \
         libncurses5 \
         nodejs \
