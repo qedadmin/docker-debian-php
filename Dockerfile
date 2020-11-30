@@ -136,6 +136,23 @@ RUN     \
         php7.4-tidy \
         php7.4-xml php7.4-xmlrpc php7.4-xsl \
         php7.4-zip \
+        php8.0 \
+        php8.0-bcmath php8.0-bz2 php8.0-cli php8.0-common php8.0-curl \
+        php8.0-dba php8.0-dev \
+        php8.0-enchant \
+        php8.0-fpm \
+        php8.0-gd php8.0-gmp \
+        php8.0-imap php8.0-interbase php8.0-intl \
+        php8.0-json \
+        php8.0-ldap \
+        php8.0-mbstring php8.0-mysql \
+        php8.0-odbc php8.0-opcache \
+        php8.0-pgsql php8.0-phpdbg php8.0-pspell \
+        php8.0-readline \
+        php8.0-snmp php8.0-soap php8.0-sqlite3 php8.0-sybase \
+        php8.0-tidy \
+        php8.0-xml php8.0-xsl \
+        php8.0-zip \
         php-geoip \
         php-imagick \
         php-redis \
@@ -197,6 +214,23 @@ RUN     \
         && pear config-set http_proxy "" \
         && echo "extension=oci8.so" > /etc/php/7.4/mods-available/oci8.ini \
         \
+        && update-alternatives --set php /usr/bin/php8.0 \
+        && update-alternatives --set php-config /usr/bin/php-config8.0 \
+        && update-alternatives --set phpdbg /usr/bin/phpdbg8.0 \
+        && update-alternatives --set phpize /usr/bin/phpize8.0 \
+        && update-alternatives --set phar /usr/bin/phar8.0 \
+        && \
+        if [ ! -z "$HTTP_PROXY" ]; then \
+            pear config-set http_proxy ${HTTP_PROXY}; \
+        fi \
+        && pecl channel-update pecl.php.net \
+        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=8.0 install oci8 \
+        && pecl uninstall -r oci8 \
+        && pear -d php_suffix=8.0 install DB \
+        && pear uninstall -r DB \
+        && pear config-set http_proxy "" \
+        && echo "extension=oci8.so" > /etc/php/8.0/mods-available/oci8.ini \
+        \
         && phpenmod -s ALL oci8 \
         && dpkg -i /tmp/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb \
         && dpkg -i /tmp/percona-xtrabackup.deb \
@@ -219,6 +253,7 @@ RUN     \
        	/etc/php/7.2/fpm/pool.d/*.conf \
        	/etc/php/7.3/fpm/pool.d/*.conf \
        	/etc/php/7.4/fpm/pool.d/*.conf \
+       	/etc/php/8.0/fpm/pool.d/*.conf \
         && mkdir -p /run/php \
         && mkdir -p /etc/haproxy \
         && mkdir -p /var/run/mysqld \
