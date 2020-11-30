@@ -190,7 +190,7 @@ RUN     \
         if [ ! -z "$HTTP_PROXY" ]; then \
             pear config-set http_proxy ${HTTP_PROXY}; \
         fi \
-        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=7.2 install oci8 \
+        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=7.2 install oci8-2.2.0 \
         && pecl uninstall -r oci8 \
         && pear -d php_suffix=7.2 install DB \
         && pear uninstall -r DB \
@@ -207,7 +207,7 @@ RUN     \
             pear config-set http_proxy ${HTTP_PROXY}; \
         fi \
         && pecl channel-update pecl.php.net \
-        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=7.4 install oci8 \
+        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=7.4 install oci8-2.2.0 \
         && pecl uninstall -r oci8 \
         && pear -d php_suffix=7.4 install DB \
         && pear uninstall -r DB \
@@ -224,7 +224,7 @@ RUN     \
             pear config-set http_proxy ${HTTP_PROXY}; \
         fi \
         && pecl channel-update pecl.php.net \
-        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=8.0 install oci8 \
+        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=8.0 install oci8-3.0.0 \
         && pecl uninstall -r oci8 \
         && pear -d php_suffix=8.0 install DB \
         && pear uninstall -r DB \
