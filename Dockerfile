@@ -1,4 +1,4 @@
-ARG     HAPROXY_TAG=2.2
+ARG     HAPROXY_TAG=2.3
 ARG     MYSQL_TAG=5.7
 ARG     BASE_TAG=latest
 
@@ -39,7 +39,7 @@ ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/i
 ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/instantclient-sqlplus-linux.x64-${INSTANTCLIENT_VERSION}.zip /tmp/
 ADD     https://github.com/qedadmin/docker-debian-php/raw/master/instantclient/sqlnet.ora /tmp/
 ADD     http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_amd64.deb /tmp/
-ADD     https://www.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.9/binary/debian/buster/x86_64/percona-xtrabackup-80_8.0.9-1.buster_amd64.deb /tmp/percona-xtrabackup.deb
+ADD     https://www.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.14/binary/debian/buster/x86_64/percona-xtrabackup-80_8.0.14-1.buster_amd64.deb  /tmp/percona-xtrabackup.deb
 
 ## Install packages
 RUN     \
