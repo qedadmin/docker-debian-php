@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-for VERSION in '5.6' '7.2' '7.4' '8.0'; do
+for VERSION in '5.6' '7.0' '7.2' '7.4' '8.0'; do
   if ls /etc/php/${VERSION}/fpm/pool.d/*.conf &>/dev/null; then
     echo "Enabling php${VERSION}-fpm service"
     mkdir -p /etc/services.d/php${VERSION}-fpm/

@@ -102,6 +102,23 @@ RUN     \
         php5.6-tidy \
         php5.6-xml php5.6-xmlrpc php5.6-xsl \
         php5.6-zip \
+        php7.0 \
+        php7.0-bcmath php7.0-bz2 php7.0-cli php7.0-common php7.0-curl \
+        php7.0-dba php7.0-dev \
+        php7.0-enchant \
+        php7.0-fpm \
+        php7.0-gd php7.0-gmp \
+        php7.0-imap php7.0-interbase php7.0-intl \
+        php7.0-json \
+        php7.0-ldap \
+        php7.0-mbstring php7.0-mysql \
+        php7.0-odbc php7.0-opcache \
+        php7.0-pgsql php7.0-phpdbg php7.0-pspell \
+        php7.0-readline \
+        php7.0-snmp php7.0-soap php7.0-sqlite3 php7.0-sybase \
+        php7.0-tidy \
+        php7.0-xml php7.0-xmlrpc php7.0-xsl \
+        php7.0-zip \
         php7.2 \
         php7.2-bcmath php7.2-bz2 php7.2-cli php7.2-common php7.2-curl \
         php7.2-dba php7.2-dev \
@@ -181,6 +198,22 @@ RUN     \
         && pear config-set http_proxy "" \
         && echo "extension=oci8.so" > /etc/php/5.6/mods-available/oci8.ini \
         \
+        && update-alternatives --set php /usr/bin/php7.0 \
+        && update-alternatives --set php-config /usr/bin/php-config7.0 \
+        && update-alternatives --set phpdbg /usr/bin/phpdbg7.0 \
+        && update-alternatives --set phpize /usr/bin/phpize7.0 \
+        && update-alternatives --set phar /usr/bin/phar7.0 \
+        && \
+        if [ ! -z "$HTTP_PROXY" ]; then \
+            pear config-set http_proxy ${HTTP_PROXY}; \
+        fi \
+        && printf "instantclient,/usr/local/instantclient" | pecl -d php_suffix=7.0 install oci8-2.2.0 \
+        && pecl uninstall -r oci8 \
+        && pear -d php_suffix=7.0 install DB \
+        && pear uninstall -r DB \
+        && pear config-set http_proxy "" \
+        && echo "extension=oci8.so" > /etc/php/7.0/mods-available/oci8.ini \
+        \
         && update-alternatives --set php /usr/bin/php7.2 \
         && update-alternatives --set php-config /usr/bin/php-config7.2 \
         && update-alternatives --set phpdbg /usr/bin/phpdbg7.2 \
@@ -239,8 +272,7 @@ RUN     \
         && apt-get autoclean \
         && apt-get clean \
         && ln -s /usr/bin/php5.6 /usr/bin/php5 \
-        && ln -s /usr/bin/php7.2 /usr/bin/php7 \
-        && ln -s /usr/bin/php7.2 /usr/bin/php7.0 \
+        && ln -s /usr/bin/php7.4 /usr/bin/php7 \
         && ln -s /usr/bin/php7.2 /usr/bin/php7.1 \
         && ln -s /usr/bin/php7.4 /usr/bin/php7.3 \
         && rm -rf \
