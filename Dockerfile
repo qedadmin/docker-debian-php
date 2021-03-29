@@ -169,10 +169,10 @@ RUN     \
         php8.0-tidy \
         php8.0-xml php8.0-xsl \
         php8.0-zip \
-        php-geoip \
-        php-imagick \
-        php-redis \
-        php-xdebug \
+        php-geoip-all-dev \
+        php-imagick-all-dev \
+        php-redis-all-dev \
+        php-xdebug-all-dev \
         php-pear \
         php-json \
         multiarch-support \
