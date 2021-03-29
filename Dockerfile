@@ -273,8 +273,7 @@ RUN     \
         && apt-get clean \
         && ln -s /usr/bin/php5.6 /usr/bin/php5 \
         && ln -s /usr/bin/php7.4 /usr/bin/php7 \
-        && ln -s /usr/bin/php7.2 /usr/bin/php7.1 \
-        && ln -s /usr/bin/php7.4 /usr/bin/php7.3 \
+        && ln -s /usr/bin/php8.0 /usr/bin/php8 \
         && rm -rf \
        	/tmp/* \
        	/var/lib/apt/lists/* \
