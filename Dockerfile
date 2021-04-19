@@ -182,6 +182,7 @@ RUN     \
         libdbd-mysql-perl \
         libcurl4-openssl-dev \
         libev4 \
+        libfcgi0ldbl \
         && update-alternatives --set php /usr/bin/php5.6 \
         && update-alternatives --set php-config /usr/bin/php-config5.6 \
         && update-alternatives --set phpdbg /usr/bin/phpdbg5.6 \
